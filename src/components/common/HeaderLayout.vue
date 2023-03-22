@@ -1,8 +1,8 @@
 <template>
   <div class="header_container">
     <div class="header_left">
-      <div class="change-icon">
-        <i class="el-icon-s-fold"></i>
+      <div class="change-icon"  @click="toggleCollapse">
+        <i :class="iconName"></i>
       </div>
       <span>首页</span>
     </div>
@@ -23,7 +23,23 @@
 
 <script>
 export default {
-  name: "HeaderLayout"
+  name: "HeaderLayout",
+  data() {
+    return {
+      iconName: 'el-icon-s-fold'
+    }
+  },
+  methods: {
+    toggleCollapse() {
+      this.$store.commit('changeCollapse')
+      if (this.$store.state.collapse.isCollapse) {
+        this.iconName='el-icon-s-unfold'
+      }
+      else {
+        this.iconName='el-icon-s-fold'
+      }
+    },
+  },
 }
 </script>
 

@@ -6,13 +6,14 @@
         text-color="#fff"
         unique-opened
         router
+        :collapse="isCollapse"
         default-active="2"
         class="el-menu-vertical-demo"
         @open="handleOpen"
         @close="handleClose">
         <a href="/" class="logo">
           <img src="@/assets/logo.png" alt="" />
-          <h1>后台管理系统</h1>
+          <h1 v-if="!isCollapse">后台管理系统</h1>
         </a>
         <!--无子菜单-->
         <el-menu-item v-for="item in noChildren" :key="item.name" :index="item.path">
@@ -106,6 +107,9 @@ export default {
     },
     noChildren() {
       return this.menuList.filter(item => !item.children)
+    },
+    isCollapse() {
+      return this.$store.state.collapse.isCollapse
     }
   }
 }
@@ -127,10 +131,11 @@ export default {
   border-right: none;
   width: 200px;
   height: 100vh;
-  .el-menu--collapse {
+
+}
+.el-menu--collapse {
     width: 64px;
   }
-}
 .el-menu-item-group {
   .el-menu-item-group__title {
     padding: 0;
