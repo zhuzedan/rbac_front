@@ -8,7 +8,36 @@ const routes = [
   {
     path: '/',
     name: 'basicLayout',
-    component: BasicLayout
+    component: BasicLayout,
+    meta: {
+      requireAuth: true
+    },
+    children: [
+      // 设置菜单列表的路由
+      {
+        path: '',
+        name: 'dashboard',
+        component: () => import("@/views/dashboard/Index.vue"),
+        meta: {
+          requireAuth: true
+        }
+      },
+      {
+        path: '/systemUser',
+        name: 'systemUser',
+        component: () => import("@/views/admin/systemUser/Index.vue")
+      },
+      {
+        path: '/systemRole',
+        name: 'systemRole',
+        component: () => import("@/views/admin/systemRole/Index.vue")
+      },
+      {
+        path: '/systemMenu',
+        name: 'systemMenu',
+        component: () => import("@/views/admin/systemMenu/Index.vue")
+      }
+    ]
   }
 ]
 

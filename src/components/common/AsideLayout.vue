@@ -5,6 +5,7 @@
         background-color="#191a23"
         text-color="#fff"
         unique-opened
+        router
         default-active="2"
         class="el-menu-vertical-demo"
         @open="handleOpen"
@@ -14,7 +15,7 @@
           <h1>后台管理系统</h1>
         </a>
         <!--无子菜单-->
-        <el-menu-item v-for="item in noChildren" :key="item.name" :index="item.name">
+        <el-menu-item v-for="item in noChildren" :key="item.name" :index="item.path">
           <i class="el-icon-menu"></i>
           <span slot="title">{{ item.label }}</span>
         </el-menu-item>
@@ -24,7 +25,7 @@
             <i class="el-icon-location"></i>
             <span>{{ item.label }}</span>
           </template>
-            <el-menu-item v-for="subItem in item.children" :key="subItem.name" :index="subItem.name">
+            <el-menu-item v-for="subItem in item.children" :key="subItem.name" :index="subItem.path">
               {{ subItem.label }}
             </el-menu-item>
         </el-submenu>
@@ -123,6 +124,7 @@ export default {
   }
 }
 .el-menu {
+  border-right: none;
   width: 200px;
   height: 100vh;
   .el-menu--collapse {

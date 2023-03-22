@@ -7,9 +7,13 @@
       </el-aside>
       <el-container>
         <!--头部-->
-        <el-header>Header</el-header>
+        <el-header>
+          <header-layout></header-layout>
+        </el-header>
         <!--内容-->
-        <el-main>Main</el-main>
+        <el-main>
+          <router-view/>
+        </el-main>
       </el-container>
     </el-container>
   </div>
@@ -17,10 +21,12 @@
 
 <script>
 import AsideLayout from "../common/AsideLayout";
+import HeaderLayout from "./HeaderLayout.vue";
 export default {
   name: "BasicLayout",
   components: {
-    AsideLayout
+    AsideLayout,
+    HeaderLayout
   },
 
   data() {
@@ -29,4 +35,7 @@ export default {
 </script>
 
 <style scoped>
+.el-header {
+  padding: 0
+}
 </style>
