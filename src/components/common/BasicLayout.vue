@@ -39,6 +39,7 @@ export default {
 
 <style scoped>
 .el-header {
-  padding: 0
+  padding: 0;
+  box-shadow: rgb(144, 147, 153) 0px -1px 3px 0px;
 }
 </style>

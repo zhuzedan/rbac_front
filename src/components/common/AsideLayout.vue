@@ -2,12 +2,13 @@
   <div class="aside">
     <el-col :span="12">
       <el-menu
-        background-color="#191a23"
+        background-color="#0c1120"
         text-color="#fff"
         unique-opened
         router
         :collapse="isCollapse"
-        default-active="2"
+        :default-active="activeIndex"
+        @select="handleSelect"
         class="el-menu-vertical-demo"
         @open="handleOpen"
         @close="handleClose">
@@ -40,6 +41,7 @@ export default {
   name: "AsideLayout",
   data() {
     return {
+      activeIndex: this.$route.path,
       menuList: [
         {
           path: "/",
@@ -93,7 +95,16 @@ export default {
       ]
     }
   },
+  watch: { 
+    '$route' (to, from) {
+      // 监听路由的变化  如果路由发生改变则当前tab栏默认值也相应改变
+      this.activeIndex = to.path
+    }
+  },
   methods: {
+    handleSelect (key, keyPath) {
+      this.activeIndex = key
+    },
     handleOpen(key, keyPath) {
       console.log(key, keyPath);
     },
@@ -128,10 +139,10 @@ export default {
   }
 }
 .el-menu {
-  border-right: none;
   width: 200px;
   height: 100vh;
-
+  padding: 0;
+  margin: 0;
 }
 .el-menu--collapse {
     width: 64px;
