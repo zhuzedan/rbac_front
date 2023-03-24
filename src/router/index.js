@@ -38,6 +38,11 @@ const routes = [
         component: () => import("@/views/admin/systemMenu/Index.vue")
       }
     ]
+  },
+  {
+    path: '*',
+    name: '404',
+    component: () => import("@/views/exception/404.vue")
   }
 ]
 
