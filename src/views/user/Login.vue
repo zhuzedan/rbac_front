@@ -21,6 +21,7 @@
   </div>
 </template>
 <script>
+import { login } from '@/api/user'
 export default {
   data () {
     return {
@@ -53,6 +54,28 @@ export default {
   mounted () {},
   methods: {
     onSubmit () {
+      this.isLoading = true
+      this.$refs.loginForm
+        .validate()
+        .then(() => {
+          return login(this.formData)
+        })
+        .then((res) => {
+          const { data } = res
+          if(data.success) {
+            this.$message.success(data.message)
+            window.localStorage.setItem('tokenInfo',JSON.stringify(data.data))
+            this.$router.push(this.$route.query.redirect || '/')           
+          }else {
+            this.$message.error(data.message)
+          }
+        })
+        .catch(() => {
+          this.$message.error('验证失败')
+        })
+        .finally(() => {
+          this.isLoading = false
+        })
     }
   }
 }
