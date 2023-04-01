@@ -81,6 +81,8 @@ import {
   Message,
   Notification
 } from 'element-ui';
+import VueParticles from 'vue-particles'
+Vue.use(VueParticles)
 
 Vue.config.productionTip = false
 

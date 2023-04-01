@@ -7,7 +7,7 @@ const request = axios.create({
 request.interceptors.request.use(
   function (config) {
     if(window.localStorage.getItem('tokenInfo')) {
-      config.headers.Authorization = window.localStorage.getItem('tokenInfo').tokenInfo?.tokenHead + ' ' + window.localStorage.getItem('tokenInfo').tokenInfo?.token
+      config.headers.Authorization = window.localStorage.getItem('tokenInfo').tokenInfo?.tokenHead + ' ' + window.localStorage.getItem('tokenInfo').tokenInfo?.token || ''
     }
     return config
   },
@@ -18,7 +18,7 @@ request.interceptors.request.use(
 // 响应拦截器
 request.interceptors.response.use(
   function (response) {
-    return response;
+    return response.data;
   }, function (error) {
     return Promise.reject(error)
   }

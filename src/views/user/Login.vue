@@ -1,18 +1,37 @@
 <template>
   <div class="login">
+    <div class="vue-particles">
+      <vue-particles
+        color="#dedede"
+        :particleOpacity="0.7"
+        :particlesNumber="80"
+        shapeType="circle"
+        :particleSize="4"
+        linesColor="#dedede"
+        :linesWidth="1"
+        :lineLinked="true"
+        :lineOpacity="0.4"
+        :linesDistance="150"
+        :moveSpeed="3"
+        :hoverEffect="true"
+        hoverMode="grab"
+        :clickEffect="true"
+        clickMode="push"
+        style="height: 100%"
+      ></vue-particles>
+    </div>
+
     <el-form
       ref="loginForm"
       :model="formData"
-      label-position="top"
-      label-width="80px"
       :rules="myRoles"
     >
-      <h2>登录</h2>
-      <el-form-item label="用户名" prop="username">
-        <el-input v-model="formData.username"></el-input>
+      <h2>系统登录</h2>
+      <el-form-item prop="username">
+        <el-input prefix-icon="el-icon-user" placeholder="请输入用户名" v-model="formData.username"></el-input>
       </el-form-item>
-      <el-form-item label="密  码" prop="password">
-        <el-input type="password" v-model="formData.password"></el-input>
+      <el-form-item prop="password">
+        <el-input prefix-icon="el-icon-lock" placeholder="请输入密码" type="password" v-model="formData.password"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit" :loading="isLoading">登录</el-button>
@@ -21,7 +40,7 @@
   </div>
 </template>
 <script>
-import { login } from '@/api/user'
+import { login } from '@/api/login'
 export default {
   data () {
     return {
@@ -86,11 +105,30 @@ export default {
   height: 100vh;
   justify-content: center;
   align-items: center;
+  .vue-particles {
+    background-size: cover;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
 }
 .el-form {
-  width: 400px;
-  padding: 30px;
+  h2{
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  z-index: 2;
+  box-shadow: 0 0 25px #cac6c6;
   border-radius: 10px;
-  background: #f6f6f6;
+  background: #fff;
+  width: 350px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-bottom: 16px;
 }
 </style>
