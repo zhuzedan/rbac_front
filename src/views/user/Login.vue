@@ -35,7 +35,7 @@
         <el-input prefix-icon="el-icon-lock" placeholder="请输入密码" type="password" v-model="formData.password"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSubmit" :loading="isLoading">登录</el-button>
+        <el-button style="width: 100%" type="primary" @click="onSubmit" :loading="isLoading">登录</el-button>
       </el-form-item>
     </el-form>
   </div>

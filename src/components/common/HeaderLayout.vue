@@ -14,7 +14,7 @@
         </span>
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item>个人信息</el-dropdown-item>
-          <el-dropdown-item>退出登录</el-dropdown-item>
+          <el-dropdown-item @click.native="handleLogout">退出登录</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import { removToken } from '@/utils/token'
 export default {
   name: "HeaderLayout",
   data() {
@@ -30,6 +31,21 @@ export default {
     }
   },
   methods: {
+    handleLogout () {
+      this.$confirm('确定要退出吗','退出提示',{
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      })
+      .then(() => {
+        this.$message.success('成功退出')
+        removToken('tokenInfo')
+        this.$router.push('/login')
+      })
+      .catch(() => {
+        this.$message.info('取消')
+      })
+    },
     toggleCollapse() {
       this.$store.commit('changeCollapse')
       if (this.$store.state.collapse.isCollapse) {

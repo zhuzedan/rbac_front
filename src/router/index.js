@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import BasicLayout from '../components/common/BasicLayout'
 
+import { getToken } from '@/utils/token'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -54,5 +56,18 @@ const routes = [
 const router = new VueRouter({
   routes
 })
-
+router.beforeEach((to,from,next) => {
+  if(to.matched.some(r => r.meta.requireAuth)) {
+    if(!JSON.parse(getToken('tokenInfo'))) {
+      next({
+        name: 'login',
+        query: {
+          redirect: to.fullPath
+        }
+      })
+      return
+    }
+  }
+  next()
+})
 export default router
