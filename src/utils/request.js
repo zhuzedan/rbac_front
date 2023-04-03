@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { getToken,setToken } from './token'
 
 const request = axios.create({
   baseURL: 'http://localhost:8888'
@@ -6,8 +7,8 @@ const request = axios.create({
 // 请求拦截器
 request.interceptors.request.use(
   function (config) {
-    if(window.localStorage.getItem('tokenInfo')) {
-      config.headers.Authorization = window.localStorage.getItem('tokenInfo').tokenInfo?.tokenHead + ' ' + window.localStorage.getItem('tokenInfo').tokenInfo?.token || ''
+    if(getToken('tokenInfo')) {
+      config.headers.Authorization = JSON.parse(getToken('tokenInfo')).tokenHead+ ' ' + JSON.parse(getToken('tokenInfo')).token || ''
     }
     return config
   },

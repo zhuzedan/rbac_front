@@ -1,5 +1,6 @@
 <template>
   <div class="login">
+    <!-- 粒子背景 -->
     <div class="vue-particles">
       <vue-particles
         color="#dedede"
@@ -20,7 +21,7 @@
         style="height: 100%"
       ></vue-particles>
     </div>
-
+    <!-- 表单 -->
     <el-form
       ref="loginForm"
       :model="formData"
@@ -41,6 +42,7 @@
 </template>
 <script>
 import { login } from '@/api/login'
+import { setToken } from '@/utils/token'
 export default {
   data () {
     return {
@@ -80,13 +82,12 @@ export default {
           return login(this.formData)
         })
         .then((res) => {
-          const { data } = res
-          if(data.success) {
-            this.$message.success(data.message)
-            window.localStorage.setItem('tokenInfo',JSON.stringify(data.data))
-            this.$router.push(this.$route.query.redirect || '/')           
+          if(res.success) {
+            this.$message.success(res.message)
+            setToken('tokenInfo',JSON.stringify(res.data))
+            this.$router.push(this.$route.query.redirect || '/')
           }else {
-            this.$message.error(data.message)
+            this.$message.error(res.message)
           }
         })
         .catch(() => {

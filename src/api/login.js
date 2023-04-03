@@ -4,7 +4,7 @@ import request from '@/utils/request'
 export const login = (formData) => {
   return request({
     method: 'POST',
-    url: '/api/systemuser/login',
+    url: '/api/systemUser/login',
     data: formData
   })
 }
