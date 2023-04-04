@@ -85,7 +85,7 @@ export default {
           if(res.success) {
             this.$message.success(res.message)
             setToken('tokenInfo',JSON.stringify(res.data))
-            this.$router.push(this.$route.query.redirect || '/')
+            this.$router.push(this.$route.query.redirect || '/home')
           }else {
             this.$message.error(res.message)
           }

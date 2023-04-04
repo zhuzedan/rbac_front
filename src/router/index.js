@@ -7,13 +7,18 @@ import { getToken } from '@/utils/token'
 Vue.use(VueRouter)
 
 const routes = [
+  // 路由默认跳转
+  {
+    path: '/', // 如果路由为/
+    redirect: '/login' //重定向到登录组件
+  },
   {
     path: '/login',
     name: 'login',
     component: () => import("@/views/user/Login.vue")
   },
   {
-    path: '/',
+    path: '/home',
     name: 'basicLayout',
     component: BasicLayout,
     meta: {

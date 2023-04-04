@@ -44,7 +44,7 @@ export default {
       activeIndex: this.$route.path,
       menuList: [
         {
-          path: "/",
+          path: "/home",
           name: "main",
           label: "首页",
           icon: 's-home',
