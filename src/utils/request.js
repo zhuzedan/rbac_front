@@ -3,6 +3,7 @@ import { getToken,setToken } from './token'
 
 const request = axios.create({
   baseURL: 'http://localhost:8888'
+  // baseURL: 'http://8.130.47.129:8888'
 })
 // 请求拦截器
 request.interceptors.request.use(
