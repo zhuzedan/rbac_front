@@ -1,15 +1,16 @@
 import axios from 'axios'
-import { getToken,setToken } from './token'
+import { getToken, setToken } from './token'
 
 const request = axios.create({
-  baseURL: 'http://localhost:8888'
-  // baseURL: 'http://8.130.47.129:8888'
+  baseURL: 'http://localhost:8888',
+  // baseURL: 'http://8.130.47.129:8888',
+  withCredentials: true
 })
 // 请求拦截器
 request.interceptors.request.use(
   function (config) {
-    if(getToken('tokenInfo')) {
-      config.headers.Authorization = JSON.parse(getToken('tokenInfo')).tokenHead+ ' ' + JSON.parse(getToken('tokenInfo')).token || ''
+    if (getToken('tokenInfo')) {
+      config.headers.Authorization = JSON.parse(getToken('tokenInfo')).tokenHead + ' ' + JSON.parse(getToken('tokenInfo')).token || ''
     }
     return config
   },

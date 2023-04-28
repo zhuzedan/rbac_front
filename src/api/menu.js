@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-// 登录
+// 侧栏菜单列表
 export const getMeunList = () => {
   return request({
     method: 'GET',
